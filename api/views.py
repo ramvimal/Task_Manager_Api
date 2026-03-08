@@ -17,9 +17,15 @@ class register_user(APIView):
 
 
 class project_view(viewsets.ModelViewSet):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     serializer_class = project_serializers
     queryset = project.objects.all()
+
+    def get_queryset(self):
+        return project.objects.filter(owner=self.request.user)
+    
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 class task_view(viewsets.ModelViewSet):
     serializer_class = task_serializers

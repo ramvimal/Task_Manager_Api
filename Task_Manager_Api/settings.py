@@ -45,8 +45,16 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend"
+    ]
 }
+from datetime import timedelta
 
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=150),   # access token valid for 60 minutes
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),      # refresh token valid for 1 day
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

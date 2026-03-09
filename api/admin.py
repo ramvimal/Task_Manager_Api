@@ -4,10 +4,10 @@ from . models import project , Task , Comment
 
 
 class TaskModel(admin.ModelAdmin):
-    list_display = ('id', 'title', 'description')
+    list_display = ('title', 'description','id')
 
 class ProjectModel(admin.ModelAdmin):
-    list_display = ('id', 'name')
+    list_display = ('name','owner','id')
 
 class CommentModel(admin.ModelAdmin):
     list_display = ('user','task','text','id')
